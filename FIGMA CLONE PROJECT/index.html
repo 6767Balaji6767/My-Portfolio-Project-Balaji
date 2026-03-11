@@ -6,182 +6,113 @@
     <title>Balaji Portfolio | Full Stack Developer</title>
     <meta name="description" content="Portfolio of Balaji, a Full Stack Developer.">
     <link rel="stylesheet" href="CSS/Style.css">
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600&display=swap" rel="stylesheet">
 
   <style>
-    /* ===== CONTACT MODAL OVERLAY ===== */
-  #contactFormBox {
-  position: fixed;
-  inset: 0;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  transform: none;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  background: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(6px);
-}
-
-#contactFormBox.active {
-  display: flex;
-}
-
-    /* ===== CONTACT CARD ===== */
+    #contactFormBox {
+      position: fixed;
+      inset: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
+      transform: none;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(6px);
+    }
+    #contactFormBox.active { display: flex; }
     .contact-card {
       background: #ffffff;
       border-radius: 24px;
       padding: 40px 36px;
       width: 420px;
       max-width: 95vw;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.18);
       position: relative;
       animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
-
-    body.dark-mode .contact-card {
-      background: #111827;
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
+    body.dark-mode .contact-card { background: #111827; border: 1px solid rgba(255,255,255,0.08); }
     @keyframes popIn {
       0%   { transform: scale(0.85); opacity: 0; }
       100% { transform: scale(1);    opacity: 1; }
     }
-
-    /* ===== CLOSE BTN ===== */
     #closeBtn {
-      position: absolute;
-      top: 16px;
-      right: 20px;
-      font-size: 18px;
-      font-weight: 700;
-      color: #9ca3af;
-      cursor: pointer;
-      transition: color 0.2s ease, transform 0.2s ease;
-      line-height: 1;
+      position: absolute; top: 16px; right: 20px;
+      font-size: 18px; font-weight: 700; color: #9ca3af;
+      cursor: pointer; transition: color 0.2s ease, transform 0.2s ease; line-height: 1;
     }
-
-    #closeBtn:hover {
-      color: #111827;
-      transform: rotate(90deg);
-    }
-
+    #closeBtn:hover { color: #111827; transform: rotate(90deg); }
     body.dark-mode #closeBtn:hover { color: #f9fafb; }
-
-    /* ===== TITLE ===== */
-    .contact-card h3 {
-      font-family: 'Clash Display', 'Outfit', sans-serif;
-      font-size: 22px;
-      font-weight: 700;
-      color: #111827;
-      margin-bottom: 6px;
-    }
-
+    .contact-card h3 { font-family: 'Clash Display', 'Outfit', sans-serif; font-size: 22px; font-weight: 700; color: #111827; margin-bottom: 6px; }
     body.dark-mode .contact-card h3 { color: #f9fafb; }
-
-    .contact-card .subtitle {
-      font-size: 14px;
-      color: #6b7280;
-      margin-bottom: 28px;
-    }
-
-    /* ===== CONTACT ITEMS ===== */
-    .contact-links {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .contact-link {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 16px 20px;
-      border-radius: 16px;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 15px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-      border: 1.5px solid transparent;
-    }
-
-    .contact-link:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    }
-
-    /* WhatsApp */
-    .contact-link.whatsapp {
-      background: #f0fdf4;
-      border-color: #bbf7d0;
-      color: #15803d;
-    }
+    .contact-card .subtitle { font-size: 14px; color: #6b7280; margin-bottom: 28px; }
+    .contact-links { display: flex; flex-direction: column; gap: 14px; }
+    .contact-link { display: flex; align-items: center; gap: 16px; padding: 16px 20px; border-radius: 16px; text-decoration: none; font-weight: 500; font-size: 15px; transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease; border: 1.5px solid transparent; }
+    .contact-link:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+    .contact-link.whatsapp { background: #f0fdf4; border-color: #bbf7d0; color: #15803d; }
     .contact-link.whatsapp:hover { background: #dcfce7; }
-
-    /* Email */
-    .contact-link.email {
-      background: #eff6ff;
-      border-color: #bfdbfe;
-      color: #1d4ed8;
-    }
+    .contact-link.email { background: #eff6ff; border-color: #bfdbfe; color: #1d4ed8; }
     .contact-link.email:hover { background: #dbeafe; }
-
-    /* LinkedIn */
-    .contact-link.linkedin {
-      background: #f0f9ff;
-      border-color: #bae6fd;
-      color: #0369a1;
-    }
+    .contact-link.linkedin { background: #f0f9ff; border-color: #bae6fd; color: #0369a1; }
     .contact-link.linkedin:hover { background: #e0f2fe; }
-
-    /* Phone */
-    .contact-link.phone {
-      background: #fdf4ff;
-      border-color: #e9d5ff;
-      color: #7e22ce;
-    }
+    .contact-link.phone { background: #fdf4ff; border-color: #e9d5ff; color: #7e22ce; }
     .contact-link.phone:hover { background: #f3e8ff; }
-
-    /* Dark mode overrides */
     body.dark-mode .contact-link.whatsapp  { background: rgba(21,128,61,0.15);  border-color: rgba(21,128,61,0.3);  color: #4ade80; }
     body.dark-mode .contact-link.email     { background: rgba(29,78,216,0.15);  border-color: rgba(29,78,216,0.3);  color: #60a5fa; }
     body.dark-mode .contact-link.linkedin  { background: rgba(3,105,161,0.15);  border-color: rgba(3,105,161,0.3);  color: #38bdf8; }
     body.dark-mode .contact-link.phone     { background: rgba(126,34,206,0.15); border-color: rgba(126,34,206,0.3); color: #c084fc; }
+    .contact-link svg { width: 26px; height: 26px; flex-shrink: 0; }
+    .contact-link-text { display: flex; flex-direction: column; }
+    .contact-link-label { font-size: 12px; opacity: 0.65; font-weight: 400; }
+    .contact-link-value { font-weight: 600; font-size: 14px; }
 
-    .contact-link svg {
-      width: 26px;
-      height: 26px;
-      flex-shrink: 0;
+    /* ===== GET IN TOUCH FAQ ===== */
+    .getin-touch { padding: 96px 80px; background-color: #f9fafb; }
+    .getin-inner { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; gap: 48px; align-items: center; }
+    .getin-heading-wrap { text-align: center; display: flex; flex-direction: column; gap: 12px; }
+    .getin-main-heading { font-family: 'Clash Display', 'Outfit', sans-serif; font-size: 36px; font-weight: 700; color: #111827; line-height: 1.25; }
+    .getin-highlight { color: #4dc8c8; }
+    .getin-main-sub { font-size: 16px; color: #6b7280; line-height: 1.6; }
+    .faq-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%; }
+    .faq-card { background: #ffffff; border-radius: 20px; padding: 28px 24px; display: flex; gap: 16px; align-items: flex-start; border: 1.5px solid #f3f4f6; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+    .faq-card:hover { border-color: #4dc8c8; transform: translateY(-4px); box-shadow: 0 12px 28px rgba(77,200,200,0.12); }
+    .faq-icon { font-size: 28px; flex-shrink: 0; line-height: 1; }
+    .faq-content { display: flex; flex-direction: column; gap: 8px; }
+    .faq-question { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 15px; color: #111827; }
+    .faq-answer { font-size: 14px; color: #6b7280; line-height: 1.6; display: flex; align-items: center; gap: 6px; }
+    .availability-dot { display: inline-block; width: 8px; height: 8px; background: #22c55e; border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 6px rgba(34,197,94,0.6); animation: pulse-dot 2s infinite; }
+    @keyframes pulse-dot {
+      0%, 100% { box-shadow: 0 0 6px rgba(34,197,94,0.6); }
+      50%       { box-shadow: 0 0 14px rgba(34,197,94,0.9); }
     }
-
-    .contact-link-text {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .contact-link-label {
-      font-size: 12px;
-      opacity: 0.65;
-      font-weight: 400;
-    }
-
-    .contact-link-value {
-      font-weight: 600;
-      font-size: 14px;
-    }
+    .getin-cta { display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center; }
+    .getin-cta-text { font-size: 16px; color: #6b7280; }
+    .getin-cta-buttons { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+    .cta-btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; border-radius: 50px; font-weight: 600; font-size: 15px; text-decoration: none; transition: all 0.3s ease; }
+    .cta-btn.primary { background: #111827; color: #ffffff; box-shadow: 0 4px 14px rgba(0,0,0,0.15); }
+    .cta-btn.primary:hover { background: #1f2937; transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+    .cta-btn.secondary { background: #ffffff; color: #111827; border: 1.5px solid #e5e7eb; }
+    .cta-btn.secondary:hover { border-color: #4dc8c8; color: #4dc8c8; transform: translateY(-3px); box-shadow: 0 8px 24px rgba(77,200,200,0.15); }
+    body.dark-mode .getin-touch        { background-color: #0a0a0a; }
+    body.dark-mode .getin-main-heading { color: #f9fafb; }
+    body.dark-mode .getin-main-sub     { color: #9ca3af; }
+    body.dark-mode .faq-card           { background: #111827; border-color: #1f2937; }
+    body.dark-mode .faq-card:hover     { border-color: #4dc8c8; }
+    body.dark-mode .faq-question       { color: #f9fafb; }
+    body.dark-mode .faq-answer         { color: #9ca3af; }
+    body.dark-mode .getin-cta-text     { color: #9ca3af; }
+    body.dark-mode .cta-btn.primary    { background: #CCFF00; color: #0f172a; }
+    body.dark-mode .cta-btn.secondary  { background: #111827; color: #f9fafb; border-color: #374151; }
+    @media (max-width: 1024px) { .faq-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px)  { .getin-touch { padding: 48px 20px; } .faq-grid { grid-template-columns: 1fr; } .getin-main-heading { font-size: 26px; } }
   </style>
 </head>
 <body>
 
-<!-- Navbar -->
 <header class="navbar">
   <div class="nav-container">
     <div class="logo">
@@ -202,92 +133,44 @@
   </div>
 </header>
 
-<!-- ===== PROFESSIONAL CONTACT MODAL ===== -->
 <div id="contactFormBox">
   <div class="contact-card">
     <span id="closeBtn">✕</span>
     <h3>Let's Connect 👋</h3>
     <p class="subtitle">Pick a platform and reach out directly!</p>
-
     <div class="contact-links">
-
-      <!-- WhatsApp -->
       <a class="contact-link whatsapp" href="https://wa.me/918778551621" target="_blank">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-        </svg>
-        <div class="contact-link-text">
-          <span class="contact-link-label">WhatsApp</span>
-          <span class="contact-link-value">+91 87785 51621</span>
-        </div>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <div class="contact-link-text"><span class="contact-link-label">WhatsApp</span><span class="contact-link-value">+91 87785 51621</span></div>
       </a>
-
-      <!-- Email -->
       <a class="contact-link email" href="mailto:Sbalaji020704@gmail.com" target="_blank">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="4" width="20" height="16" rx="2"/>
-          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-        </svg>
-        <div class="contact-link-text">
-          <span class="contact-link-label">Email</span>
-          <span class="contact-link-value">Sbalaji020704@gmail.com</span>
-        </div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        <div class="contact-link-text"><span class="contact-link-label">Email</span><span class="contact-link-value">Sbalaji020704@gmail.com</span></div>
       </a>
-
-      <!-- LinkedIn -->
       <a class="contact-link linkedin" href="https://www.linkedin.com/in/balajis0207/" target="_blank">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/>
-          <circle cx="4" cy="4" r="2"/>
-        </svg>
-        <div class="contact-link-text">
-          <span class="contact-link-label">LinkedIn</span>
-          <span class="contact-link-value">balajis0207</span>
-        </div>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        <div class="contact-link-text"><span class="contact-link-label">LinkedIn</span><span class="contact-link-value">balajis0207</span></div>
       </a>
-
-      <!-- Phone -->
       <a class="contact-link phone" href="tel:+918778551621">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.93 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.77 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
-        </svg>
-        <div class="contact-link-text">
-          <span class="contact-link-label">Phone Call</span>
-          <span class="contact-link-value">+91 87785 51621</span>
-        </div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.93 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.77 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <div class="contact-link-text"><span class="contact-link-label">Phone Call</span><span class="contact-link-value">+91 87785 51621</span></div>
       </a>
-
     </div>
   </div>
 </div>
 
-<!-- HERO SECTION -->
 <section class="hero">
   <div class="hero-container">
     <div class="hero-left">
       <h1>Hi, I'm <p class="balaji"><span>BALAJI</span> <span class="wave">👋</span></p></h1>
-      <p class="hero-desc">
-        I'm Balaji, a passionate Full Stack Developer in the making who loves building clean, functional, and user-friendly web experiences. I started my journey with curiosity and turned it into a grind—learning, building, breaking, and rebuilding every single day.
-      </p>
+      <p class="hero-desc">I'm Balaji, a passionate Full Stack Developer in the making who loves building clean, functional, and user-friendly web experiences. I started my journey with curiosity and turned it into a grind—learning, building, breaking, and rebuilding every single day.</p>
       <div class="hero-meta">
-        <div>
-          <p class="location">
-            <img src="Assets/images/icons/locicon.svg"> <span> Chennai , India</span>
-          </p>
-        </div>
-        <div class="location2">
-          <img src="Assets/images/icons/green-icon.svg"> <span> Available for new projects</span>
-        </div>
+        <div><p class="location"><img src="Assets/images/icons/locicon.svg"> <span> Chennai , India</span></p></div>
+        <div class="location2"><img src="Assets/images/icons/green-icon.svg"> <span> Available for new projects</span></div>
         <div class="hero-socials">
-          <a href="https://www.linkedin.com/in/balajis0207/" target="_blank" title="linkedin">
-            <img src="assets/images/icons/lin1.svg" class="snap" alt="linkedin" id="insta-color">
-          </a>
-          <a href="#" target="_blank" title="Instagram">
-            <img src="assets/images/icons/instagram-logo-facebook-svgrepo-com.svg" alt="instagram" class="snap" id="insta-color">
-          </a>
-          <a href="#" target="_blank" title="Twitter">
-            <img src="assets/images/icons/Font_Awesome_5_brands_github.svg" class="snap" id="insta-color2">
-          </a>
+          <a href="https://www.linkedin.com/in/balajis0207/" target="_blank" title="linkedin"><img src="assets/images/icons/lin1.svg" class="snap" alt="linkedin" id="insta-color"></a>
+          <a href="#" target="_blank" title="Instagram"><img src="assets/images/icons/instagram-logo-facebook-svgrepo-com.svg" alt="instagram" class="snap" id="insta-color"></a>
+          <a href="#" target="_blank" title="Twitter"><img src="assets/images/icons/Font_Awesome_5_brands_github.svg" class="snap" id="insta-color2"></a>
         </div>
       </div>
     </div>
@@ -300,25 +183,16 @@
 </section>
 <hr class="line-hr">
 
-<!-- about starts -->
 <section id="about" class="about">
   <div class="about-container">
-    <div class="test">
-      <div class="about-tag">About me</div>
-    </div>
+    <div class="test"><div class="about-tag">About me</div></div>
     <div class="about_images-text">
       <div class="imboth">
         <div class="profile-container">
           <img src="Assets/images/1.jpg" alt="person" class="person-bg">
           <div class="glass-stats-card">
-            <div class="stat-item">
-              <span class="stat-number">6+</span>
-              <span class="stat-label">Month Exp.</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-number">8+</span>
-              <span class="stat-label">Projects</span>
-            </div>
+            <div class="stat-item"><span class="stat-number">6+</span><span class="stat-label">Month Exp.</span></div>
+            <div class="stat-item"><span class="stat-number">8+</span><span class="stat-label">Projects</span></div>
           </div>
         </div>
       </div>
@@ -338,14 +212,11 @@
 </section>
 <hr class="line-hr">
 
-<!-- skill starts -->
 <section id="work" class="skills">
   <div class="skills-container">
     <div class="header">
       <div class="about-tag">skills</div>
-      <div class="skills-line">
-        <h2>The skills, tools and technologies I am really good at:</h2>
-      </div>
+      <div class="skills-line"><h2>The skills, tools and technologies I am really good at:</h2></div>
     </div>
     <div class="whole-icon">
       <div class="skills-wrapper">
@@ -359,7 +230,6 @@
             <div class="skill-item"><img src="Assets/images/icons/icon-tailwindcss.svg" alt="tailwind"><p>Tailwind</p></div>
             <div class="skill-item"><img src="Assets/images/icons/icon-figma.svg" alt="figma"><p>Figma</p></div>
             <div class="skill-item"><img src="Assets/images/icons/icon-git.svg" alt="git"><p>Git</p></div>
-            <!-- Duplicate for seamless loop -->
             <div class="skill-item"><img src="Assets/images/icons/icons8-python (1).svg" alt="python"><p>Python</p></div>
             <div class="skill-item"><img src="Assets/images/icons/icon-react.svg" alt="react"><p>React</p></div>
             <div class="skill-item"><img src="Assets/images/icons/icon-javscript.svg" alt="js"><p>JavaScript</p></div>
@@ -374,7 +244,6 @@
 </section>
 <hr class="line-hr">
 
-<!-- experience part start -->
 <section id="experiences" class="experiences">
   <div class="cards-cont">
     <div class="exp-header">
@@ -413,7 +282,6 @@
 </section>
 <hr class="line-hr">
 
-<!-- work part starts -->
 <section id="work-area" class="work-area">
   <div class="work-container">
     <div class="top-cont">
@@ -421,9 +289,7 @@
       <div class="headline"><p>Some of the noteworthy projects I have built:</p></div>
     </div>
     <div class="imagebox">
-      <div class="image-contain-box">
-        <img class="inside-left" src="Assets/images/Screenshot 2026-01-15 101023.png">
-      </div>
+      <div class="image-contain-box"><img class="inside-left" src="Assets/images/Screenshot 2026-01-15 101023.png"></div>
       <div class="right-box">
         <div class="para">
           <span class="top">MY PORTFOLIO PROJECT</span>
@@ -435,15 +301,10 @@
             <img src="Assets/images/icons/icon-tailwindcss.svg" alt="Tailwind">
             <img src="Assets/images/icons/icon-git.svg" alt="Git">
           </div>
-          <div class="ico">
-            <a href="https://github.com/6767Balaji6767/MyProject" target="_blank">
-              <div class="imgicon-search"><img src="Assets/images/Icon Button.png"></div>
-            </a>
-          </div>
+          <div class="ico"><a href="https://github.com/6767Balaji6767/MyProject" target="_blank"><div class="imgicon-search"><img src="Assets/images/Icon Button.png"></div></a></div>
         </div>
       </div>
     </div>
-
     <div class="imagebox">
       <div class="image-contain-box project-video">
         <video autoplay muted loop playsinline>
@@ -460,11 +321,7 @@
             <img src="Assets/images/icons/opencv-svgrepo-com.svg">
             <img src="Assets/images/icons/ocr-svgrepo-com.svg" alt="ocr" class="ocr-svgrepo-com">
           </div>
-          <div class="ico">
-            <a href="https://github.com/6767Balaji6767/REAL-TIME-FACE-RECOGNITION-ID-VERIFICATION-SYSTEM" target="_blank">
-              <div class="imgicon-search"><img src="Assets/images/Icon Button.png"></div>
-            </a>
-          </div>
+          <div class="ico"><a href="https://github.com/6767Balaji6767/REAL-TIME-FACE-RECOGNITION-ID-VERIFICATION-SYSTEM" target="_blank"><div class="imgicon-search"><img src="Assets/images/Icon Button.png"></div></a></div>
         </div>
       </div>
     </div>
@@ -472,35 +329,78 @@
 </section>
 <hr class="line-hr">
 
-<!-- get in touch -->
+<!-- ===== GET IN TOUCH — FAQ STYLE ===== -->
 <section id="getin-touch" class="getin-touch">
-  <div class="getin-container">
-    <div class="get-head">
+  <div class="getin-inner">
+
+    <div class="test">
       <div class="about-tag">Get in touch</div>
-      <div class="heading-getin">
-        <p class="para-ff">What's next? Feel free to reach out to me if you're looking for a developer, have a query, or simply want to connect.</p>
-      </div>
     </div>
-    <div class="icon-mail">
-      <div class="imagemail">
-        <img src="Assets/images/icons/mailico.svg"><span class="mail"><p>Sbalaji020704@gmail.com</p></span>
-        <img src="Assets/images/icons/copyico.svg">
+
+    <div class="getin-heading-wrap">
+      <h2 class="getin-main-heading">Everything you want to know <span class="getin-highlight">before reaching out</span></h2>
+      <p class="getin-main-sub">Quick answers to what most people ask before hitting that contact button.</p>
+    </div>
+
+    <div class="faq-grid">
+      <div class="faq-card">
+        <div class="faq-icon">📍</div>
+        <div class="faq-content">
+          <span class="faq-question">Where are you based?</span>
+          <span class="faq-answer">Chennai, India — open to remote work worldwide.</span>
+        </div>
       </div>
-      <div class="imagemail">
-        <img src="Assets/images/icons/phoneico.svg"><span class="mail"><p>+91 8778551621</p></span>
-        <img src="Assets/images/icons/copyico.svg">
+      <div class="faq-card">
+        <div class="faq-icon">💼</div>
+        <div class="faq-content">
+          <span class="faq-question">Are you currently available?</span>
+          <span class="faq-answer"><span class="availability-dot"></span>Yes — available for freelance & full-time roles immediately.</span>
+        </div>
       </div>
-      <div class="findme-body">
-        <h2 class="findme-line">You may also find me on these platforms!</h2>
-        <div class="findme-logo">
-          <a href="https://github.com/dashboard" target="_blank">
-            <img src="Assets/images/icons/snap-button.svg" class="snap">
-          </a>
-          <img src="Assets/images/icons/twitter-icon.svg" class="snapt">
-          <img src="Assets/images/icons/figma.svg" class="snap">
+      <div class="faq-card">
+        <div class="faq-icon">⏱️</div>
+        <div class="faq-content">
+          <span class="faq-question">How fast do you respond?</span>
+          <span class="faq-answer">Usually within 24 hours. WhatsApp is the fastest way to reach me.</span>
+        </div>
+      </div>
+      <div class="faq-card">
+        <div class="faq-icon">🌍</div>
+        <div class="faq-content">
+          <span class="faq-question">Open to remote work?</span>
+          <span class="faq-answer">Absolutely — I work comfortably across time zones.</span>
+        </div>
+      </div>
+      <div class="faq-card">
+        <div class="faq-icon">🛠️</div>
+        <div class="faq-content">
+          <span class="faq-question">What kind of work do you do?</span>
+          <span class="faq-answer">Frontend development, UI clones, full-stack web apps & Python projects.</span>
+        </div>
+      </div>
+      <div class="faq-card">
+        <div class="faq-icon">🎓</div>
+        <div class="faq-content">
+          <span class="faq-question">What's your background?</span>
+          <span class="faq-answer">BCA graduate, currently interning as a Software Engineer at OnFleek.</span>
         </div>
       </div>
     </div>
+
+    <div class="getin-cta">
+      <p class="getin-cta-text">Still have questions? Just reach out directly —</p>
+      <div class="getin-cta-buttons">
+        <a href="https://wa.me/918778551621" target="_blank" class="cta-btn primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp Me
+        </a>
+        <a href="mailto:Sbalaji020704@gmail.com" class="cta-btn secondary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          Email Me
+        </a>
+      </div>
+    </div>
+
   </div>
 </section>
 <hr class="line-hr">
