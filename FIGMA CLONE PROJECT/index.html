@@ -11,6 +11,173 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== CONTACT MODAL OVERLAY ===== */
+  #contactFormBox {
+  position: fixed;
+  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: none;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+}
+
+#contactFormBox.active {
+  display: flex;
+}
+
+    /* ===== CONTACT CARD ===== */
+    .contact-card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 40px 36px;
+      width: 420px;
+      max-width: 95vw;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
+      position: relative;
+      animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    body.dark-mode .contact-card {
+      background: #111827;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    @keyframes popIn {
+      0%   { transform: scale(0.85); opacity: 0; }
+      100% { transform: scale(1);    opacity: 1; }
+    }
+
+    /* ===== CLOSE BTN ===== */
+    #closeBtn {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      font-size: 18px;
+      font-weight: 700;
+      color: #9ca3af;
+      cursor: pointer;
+      transition: color 0.2s ease, transform 0.2s ease;
+      line-height: 1;
+    }
+
+    #closeBtn:hover {
+      color: #111827;
+      transform: rotate(90deg);
+    }
+
+    body.dark-mode #closeBtn:hover { color: #f9fafb; }
+
+    /* ===== TITLE ===== */
+    .contact-card h3 {
+      font-family: 'Clash Display', 'Outfit', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 6px;
+    }
+
+    body.dark-mode .contact-card h3 { color: #f9fafb; }
+
+    .contact-card .subtitle {
+      font-size: 14px;
+      color: #6b7280;
+      margin-bottom: 28px;
+    }
+
+    /* ===== CONTACT ITEMS ===== */
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      border-radius: 16px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 15px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      border: 1.5px solid transparent;
+    }
+
+    .contact-link:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    /* WhatsApp */
+    .contact-link.whatsapp {
+      background: #f0fdf4;
+      border-color: #bbf7d0;
+      color: #15803d;
+    }
+    .contact-link.whatsapp:hover { background: #dcfce7; }
+
+    /* Email */
+    .contact-link.email {
+      background: #eff6ff;
+      border-color: #bfdbfe;
+      color: #1d4ed8;
+    }
+    .contact-link.email:hover { background: #dbeafe; }
+
+    /* LinkedIn */
+    .contact-link.linkedin {
+      background: #f0f9ff;
+      border-color: #bae6fd;
+      color: #0369a1;
+    }
+    .contact-link.linkedin:hover { background: #e0f2fe; }
+
+    /* Phone */
+    .contact-link.phone {
+      background: #fdf4ff;
+      border-color: #e9d5ff;
+      color: #7e22ce;
+    }
+    .contact-link.phone:hover { background: #f3e8ff; }
+
+    /* Dark mode overrides */
+    body.dark-mode .contact-link.whatsapp  { background: rgba(21,128,61,0.15);  border-color: rgba(21,128,61,0.3);  color: #4ade80; }
+    body.dark-mode .contact-link.email     { background: rgba(29,78,216,0.15);  border-color: rgba(29,78,216,0.3);  color: #60a5fa; }
+    body.dark-mode .contact-link.linkedin  { background: rgba(3,105,161,0.15);  border-color: rgba(3,105,161,0.3);  color: #38bdf8; }
+    body.dark-mode .contact-link.phone     { background: rgba(126,34,206,0.15); border-color: rgba(126,34,206,0.3); color: #c084fc; }
+
+    .contact-link svg {
+      width: 26px;
+      height: 26px;
+      flex-shrink: 0;
+    }
+
+    .contact-link-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact-link-label {
+      font-size: 12px;
+      opacity: 0.65;
+      font-weight: 400;
+    }
+
+    .contact-link-value {
+      font-weight: 600;
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
 
@@ -22,7 +189,6 @@
         <img src="Assets/images/icons/portfolio-svgrepo-com (2).svg" class="snap-logo" alt="" srcset="">
       </p>
     </div>
-    <!-- nav links -->
     <nav class="nav-links">
       <a href="#about">About</a>
       <a href="#work">Work</a>
@@ -36,79 +202,73 @@
   </div>
 </header>
 
-<!-- CONTACT MODAL -->
+<!-- ===== PROFESSIONAL CONTACT MODAL ===== -->
 <div id="contactFormBox">
-  <div class="container">
-    <form action="#" id="form" class="form">
-      <span id="closeBtn">X</span>
-      <h3>Contact Form</h3>
+  <div class="contact-card">
+    <span id="closeBtn">✕</span>
+    <h3>Let's Connect 👋</h3>
+    <p class="subtitle">Pick a platform and reach out directly!</p>
 
-      <!-- Username -->
-      <div class="form-group">
-        <label for="username">User Name</label>
-        <input type="text" id="username" placeholder="Enter your name" />
-        <p class="error"></p>
-      </div>
+    <div class="contact-links">
+
+      <!-- WhatsApp -->
+      <a class="contact-link whatsapp" href="https://wa.me/918778551621" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        <div class="contact-link-text">
+          <span class="contact-link-label">WhatsApp</span>
+          <span class="contact-link-value">+91 87785 51621</span>
+        </div>
+      </a>
 
       <!-- Email -->
-      <div class="form-group">
-        <label for="email">User Email</label>
-        <input type="text" id="email" placeholder="Enter your email" />
-        <p class="error"></p>
-      </div>
+      <a class="contact-link email" href="mailto:Sbalaji020704@gmail.com" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+        </svg>
+        <div class="contact-link-text">
+          <span class="contact-link-label">Email</span>
+          <span class="contact-link-value">Sbalaji020704@gmail.com</span>
+        </div>
+      </a>
 
-      <!-- Password -->
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" />
-        <p class="error"></p>
-      </div>
+      <!-- LinkedIn -->
+      <a class="contact-link linkedin" href="https://www.linkedin.com/in/balajis0207/" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/>
+          <circle cx="4" cy="4" r="2"/>
+        </svg>
+        <div class="contact-link-text">
+          <span class="contact-link-label">LinkedIn</span>
+          <span class="contact-link-value">balajis0207</span>
+        </div>
+      </a>
 
-      <!-- Gender -->
-      <div class="form-groupgender" id="genderGroup">
-        <label>Gender</label>
-        <label>
-          <input type="radio" name="gender" value="male" />
-          Male
-        </label>
-        <label>
-          <input type="radio" name="gender" value="female" />
-          Female
-        </label>
-        <p class="gender-error">Please select gender</p>
-      </div>
+      <!-- Phone -->
+      <a class="contact-link phone" href="tel:+918778551621">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.93 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.77 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        <div class="contact-link-text">
+          <span class="contact-link-label">Phone Call</span>
+          <span class="contact-link-value">+91 87785 51621</span>
+        </div>
+      </a>
 
-      <!-- Date of Birth -->
-      <div class="form-group">
-        <label for="dob">Date of Birth (DD/MM/YYYY)</label>
-        <input type="text" id="dob" name="dob" placeholder="DD/MM/YYYY" maxlength="10" autocomplete="off" />
-        <p class="error"></p>
-      </div>
-
-      <!-- Confirm Password -->
-      <div class="form-group">
-        <label for="confirmpassword">Confirm Password</label>
-        <input type="password" id="confirmpassword" />
-        <p class="error"></p>
-      </div>
-
-      <!-- Submit -->
-      <button type="submit">Submit</button>
-    </form>
+    </div>
   </div>
 </div>
 
 <!-- HERO SECTION -->
 <section class="hero">
   <div class="hero-container">
-    <!-- LEFT CONTENT -->
     <div class="hero-left">
       <h1>Hi, I'm <p class="balaji"><span>BALAJI</span> <span class="wave">👋</span></p></h1>
       <p class="hero-desc">
         I'm Balaji, a passionate Full Stack Developer in the making who loves building clean, functional, and user-friendly web experiences. I started my journey with curiosity and turned it into a grind—learning, building, breaking, and rebuilding every single day.
       </p>
-
-      <!-- LOCATION + STATUS -->
       <div class="hero-meta">
         <div>
           <p class="location">
@@ -118,8 +278,6 @@
         <div class="location2">
           <img src="Assets/images/icons/green-icon.svg"> <span> Available for new projects</span>
         </div>
-
-        <!-- social logo starts -->
         <div class="hero-socials">
           <a href="https://www.linkedin.com/in/balajis0207/" target="_blank" title="linkedin">
             <img src="assets/images/icons/lin1.svg" class="snap" alt="linkedin" id="insta-color">
@@ -131,11 +289,8 @@
             <img src="assets/images/icons/Font_Awesome_5_brands_github.svg" class="snap" id="insta-color2">
           </a>
         </div>
-        <!-- social logo ends -->
       </div>
     </div>
-
-    <!-- Right image -->
     <div class="hero-image">
       <div class="herpic-area">
         <img src="assets/images/Balaji_passport_photo_size__1_-removebg-preview.png" alt="hero-pic image" class="hero-pic"/>
@@ -144,21 +299,17 @@
   </div>
 </section>
 <hr class="line-hr">
-<!-- END OF HERO SECTION -->
 
 <!-- about starts -->
 <section id="about" class="about">
   <div class="about-container">
-    <!-- about button -->
     <div class="test">
       <div class="about-tag">About me</div>
     </div>
-
     <div class="about_images-text">
       <div class="imboth">
         <div class="profile-container">
           <img src="Assets/images/1.jpg" alt="person" class="person-bg">
-          <!-- Floating Glass Stats Card -->
           <div class="glass-stats-card">
             <div class="stat-item">
               <span class="stat-number">6+</span>
@@ -171,19 +322,12 @@
           </div>
         </div>
       </div>
-
       <div class="containerAboutRight">
         <span class="aboutHeader reveal-text">Curious about me? Here you have it:</span>
         <div class="aboutContent">
-          <p class="reveal-text" style="transition-delay: 100ms;">
-            I'm Balaji, a passionate and self-driven Full Stack Developer who loves turning ideas into real, working web products. I focus on building clean, responsive, and user-friendly applications with a strong balance between design and functionality.
-          </p>
-          <p class="reveal-text" style="transition-delay: 200ms;">
-            I enjoy working across the stack—crafting smooth frontends with HTML, CSS, JavaScript, React, and diving into backend logic as I continue to grow in Node.js and databases. Writing readable, efficient code and creating a great user experience genuinely matters to me.
-          </p>
-          <p class="reveal-text" style="transition-delay: 300ms;">
-            I'm a progressive thinker who enjoys working on products end-to-end—from planning and design to development and deployment. Outside of coding, I'm focused on self-improvement, fitness, and surrounding myself with people and ideas that push me forward.
-          </p>
+          <p class="reveal-text" style="transition-delay: 100ms;">I'm Balaji, a passionate and self-driven Full Stack Developer who loves turning ideas into real, working web products. I focus on building clean, responsive, and user-friendly applications with a strong balance between design and functionality.</p>
+          <p class="reveal-text" style="transition-delay: 200ms;">I enjoy working across the stack—crafting smooth frontends with HTML, CSS, JavaScript, React, and diving into backend logic as I continue to grow in Node.js and databases. Writing readable, efficient code and creating a great user experience genuinely matters to me.</p>
+          <p class="reveal-text" style="transition-delay: 300ms;">I'm a progressive thinker who enjoys working on products end-to-end—from planning and design to development and deployment. Outside of coding, I'm focused on self-improvement, fitness, and surrounding myself with people and ideas that push me forward.</p>
           <p class="reveal-text" style="transition-delay: 400ms;">I'm currently working as a Software Engineer Intern at OnFleek Media and Technologies Pvt Ltd, where I contribute to front-end development, implement real-world features, and collaborate with senior developers to turn ideas into functional products.</p>
           <p class="reveal-text" style="transition-delay: 500ms;">I've worked on a real-time Face Recognition & ID Verification system using Python, OpenCV, and OCR, giving me practical exposure to computer vision, backend logic, and system workflows</p>
           <div class="about-list reveal-text" style="transition-delay: 600ms;"></div>
@@ -193,7 +337,6 @@
   </div>
 </section>
 <hr class="line-hr">
-<!-- about ends -->
 
 <!-- skill starts -->
 <section id="work" class="skills">
@@ -204,68 +347,25 @@
         <h2>The skills, tools and technologies I am really good at:</h2>
       </div>
     </div>
-
     <div class="whole-icon">
       <div class="skills-wrapper">
         <div class="marquee">
           <div class="marquee-content">
-            <div class="skill-item">
-              <img src="Assets/images/icons/icons8-python (1).svg" alt="python">
-              <p>Python</p>
-            </div>
-            <div class="skill-item">
-              <img src="Assets/images/icons/icon-react.svg" alt="react">
-              <p>React</p>
-            </div>
-            <div class="skill-item">
-              <img src="Assets/images/icons/icon-javscript.svg" alt="js">
-              <p>JavaScript</p>
-            </div>
-            <div class="skill-item">
-              <img src="Assets/images/icons/icon-nodejs.svg" alt="node">
-              <p>Node.js</p>
-            </div>
-            <div class="skill-item">
-              <img src="Assets/images/icons/icons8-css.svg" alt="css">
-              <p>CSS</p>
-            </div>
-            <div class="skill-item">
-              <img src="Assets/images/icons/icon-tailwindcss.svg" alt="tailwind">
-              <p>Tailwind</p>
-            </div>
-            <div class="skill-item">
-              <img src="Assets/images/icons/icon-figma.svg" alt="figma">
-              <p>Figma</p>
-            </div>
-            <div class="skill-item">
-              <img src="Assets/images/icons/icon-git.svg" alt="git">
-              <p>Git</p>
-            </div>
+            <div class="skill-item"><img src="Assets/images/icons/icons8-python (1).svg" alt="python"><p>Python</p></div>
+            <div class="skill-item"><img src="Assets/images/icons/icon-react.svg" alt="react"><p>React</p></div>
+            <div class="skill-item"><img src="Assets/images/icons/icon-javscript.svg" alt="js"><p>JavaScript</p></div>
+            <div class="skill-item"><img src="Assets/images/icons/icon-nodejs.svg" alt="node"><p>Node.js</p></div>
+            <div class="skill-item"><img src="Assets/images/icons/icons8-css.svg" alt="css"><p>CSS</p></div>
+            <div class="skill-item"><img src="Assets/images/icons/icon-tailwindcss.svg" alt="tailwind"><p>Tailwind</p></div>
+            <div class="skill-item"><img src="Assets/images/icons/icon-figma.svg" alt="figma"><p>Figma</p></div>
+            <div class="skill-item"><img src="Assets/images/icons/icon-git.svg" alt="git"><p>Git</p></div>
             <!-- Duplicate for seamless loop -->
-            <div class="skill-item">
-              <img src="Assets/images/icons/icons8-python (1).svg" alt="python">
-              <p>Python</p>
-            </div>
-            <div class="skill-item">
-              <img src="Assets/images/icons/icon-react.svg" alt="react">
-              <p>React</p>
-            </div>
-            <div class="skill-item">
-              <img src="Assets/images/icons/icon-javscript.svg" alt="js">
-              <p>JavaScript</p>
-            </div>
-            <div class="skill-item">
-              <img src="Assets/images/icons/icon-nodejs.svg" alt="node">
-              <p>Node.js</p>
-            </div>
-            <div class="skill-item">
-              <img src="Assets/images/icons/icons8-css.svg" alt="css">
-              <p>CSS</p>
-            </div>
-            <div class="skill-item">
-              <img src="Assets/images/icons/icon-tailwindcss.svg" alt="tailwind">
-              <p>Tailwind</p>
-            </div>
+            <div class="skill-item"><img src="Assets/images/icons/icons8-python (1).svg" alt="python"><p>Python</p></div>
+            <div class="skill-item"><img src="Assets/images/icons/icon-react.svg" alt="react"><p>React</p></div>
+            <div class="skill-item"><img src="Assets/images/icons/icon-javscript.svg" alt="js"><p>JavaScript</p></div>
+            <div class="skill-item"><img src="Assets/images/icons/icon-nodejs.svg" alt="node"><p>Node.js</p></div>
+            <div class="skill-item"><img src="Assets/images/icons/icons8-css.svg" alt="css"><p>CSS</p></div>
+            <div class="skill-item"><img src="Assets/images/icons/icon-tailwindcss.svg" alt="tailwind"><p>Tailwind</p></div>
           </div>
         </div>
       </div>
@@ -273,7 +373,6 @@
   </div>
 </section>
 <hr class="line-hr">
-<!-- end skill part -->
 
 <!-- experience part start -->
 <section id="experiences" class="experiences">
@@ -282,12 +381,9 @@
       <div class="about-tag">Experience</div>
       <div class="experince-line"><h2>Here is a quick summary of my most recent experiences:</h2></div>
     </div>
-
     <div class="card-folder">
       <div class="card1">
-        <div class="logo-img">
-          <img src="Assets/images/icons/OnFleek_Logo.svg">
-        </div>
+        <div class="logo-img"><img src="Assets/images/icons/OnFleek_Logo.svg"></div>
         <div class="Frontend-dev">
           <h5 class="heading-dev">Software Engineer Intern</h5>
           <ul class="list-lorem">
@@ -299,11 +395,8 @@
         </div>
         <div class="list-lorem-para"><p>2026-PRESENT</p></div>
       </div>
-
       <div class="card1">
-        <div class="logo-img">
-          <img src="Assets/images/ISYS.png">
-        </div>
+        <div class="logo-img"><img src="Assets/images/ISYS.png"></div>
         <div class="Frontend-dev">
           <h5 class="heading-dev">Frontend Developer</h5>
           <ul class="list-lorem">
@@ -324,14 +417,9 @@
 <section id="work-area" class="work-area">
   <div class="work-container">
     <div class="top-cont">
-      <div class="tag">
-        <div class="about-tag">PROJECTS</div>
-      </div>
-      <div class="headline">
-        <p>Some of the noteworthy projects I have built:</p>
-      </div>
+      <div class="tag"><div class="about-tag">PROJECTS</div></div>
+      <div class="headline"><p>Some of the noteworthy projects I have built:</p></div>
     </div>
-
     <div class="imagebox">
       <div class="image-contain-box">
         <img class="inside-left" src="Assets/images/Screenshot 2026-01-15 101023.png">
@@ -349,16 +437,13 @@
           </div>
           <div class="ico">
             <a href="https://github.com/6767Balaji6767/MyProject" target="_blank">
-              <div class="imgicon-search">
-                <img src="Assets/images/Icon Button.png">
-              </div>
+              <div class="imgicon-search"><img src="Assets/images/Icon Button.png"></div>
             </a>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- card 2 -->
     <div class="imagebox">
       <div class="image-contain-box project-video">
         <video autoplay muted loop playsinline>
@@ -373,13 +458,11 @@
           <div class="skill-logobox" id="skillDetails">
             <img src="Assets/images/icons/icons8-python (1).svg" alt="Python">
             <img src="Assets/images/icons/opencv-svgrepo-com.svg">
-            <img src="Assets/images/icons/ocr-svgrepo-com.svg" alt="js" class="ocr-svgrepo-com">
+            <img src="Assets/images/icons/ocr-svgrepo-com.svg" alt="ocr" class="ocr-svgrepo-com">
           </div>
           <div class="ico">
             <a href="https://github.com/6767Balaji6767/REAL-TIME-FACE-RECOGNITION-ID-VERIFICATION-SYSTEM" target="_blank">
-              <div class="imgicon-search">
-                <img src="Assets/images/Icon Button.png">
-              </div>
+              <div class="imgicon-search"><img src="Assets/images/Icon Button.png"></div>
             </a>
           </div>
         </div>
@@ -398,16 +481,13 @@
         <p class="para-ff">What's next? Feel free to reach out to me if you're looking for a developer, have a query, or simply want to connect.</p>
       </div>
     </div>
-
     <div class="icon-mail">
       <div class="imagemail">
-        <img src="Assets/images/icons/mailico.svg">
-        <span class="mail"><p>Sbalaji020704@gmail.com</p></span>
+        <img src="Assets/images/icons/mailico.svg"><span class="mail"><p>Sbalaji020704@gmail.com</p></span>
         <img src="Assets/images/icons/copyico.svg">
       </div>
       <div class="imagemail">
-        <img src="Assets/images/icons/phoneico.svg">
-        <span class="mail"><p>+91 8778551621</p></span>
+        <img src="Assets/images/icons/phoneico.svg"><span class="mail"><p>+91 8778551621</p></span>
         <img src="Assets/images/icons/copyico.svg">
       </div>
       <div class="findme-body">
